@@ -49,17 +49,16 @@ class Person {
     this.age = age;
     this.stomach = [];
   }
-    eat(food){
-      if(this.stomach.length < 10){
-        return this.stomach.push(food);
-      }
+  eat(food){
+    if(this.stomach.length < 10){
+      return this.stomach.push(food);
     }
-
+  }
   poop(){
     return this.stomach = [];
   }
   toString(){
-    return `${this.name}, ${this.age}`
+    return `${this.name}, ${this.age}`;
   }
 }
 
@@ -78,7 +77,26 @@ class Person {
 */
 
 class Car {
-  
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons){
+    this.tank = this.tank + gallons;
+  }
+  drive(distance){
+    const miles = this.tank * this.milesPerGallon;
+    if(distance <= miles){
+      this.odometer = this.odometer + distance;
+      this.tank = this.tank - (distance / this.milesPerGallon);
+    }else{
+      this.odometer = this.odometer + miles;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!` 
+    }
+  }
 }
 
 /*
